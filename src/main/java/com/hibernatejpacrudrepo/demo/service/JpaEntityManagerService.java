@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class JpaEntityManagerService {
+
     @PersistenceContext private EntityManager em;
 
     @Transactional

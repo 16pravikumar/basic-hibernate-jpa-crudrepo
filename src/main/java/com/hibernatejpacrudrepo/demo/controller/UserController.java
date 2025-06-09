@@ -1,6 +1,8 @@
 package com.hibernatejpacrudrepo.demo.controller;
 
+import com.hibernatejpacrudrepo.demo.entity.Employee;
 import com.hibernatejpacrudrepo.demo.entity.User;
+import com.hibernatejpacrudrepo.demo.service.EmployeeRepositoryService;
 import com.hibernatejpacrudrepo.demo.service.HibernateUserService;
 import com.hibernatejpacrudrepo.demo.service.JpaEntityManagerService;
 import com.hibernatejpacrudrepo.demo.service.UserRepositoryService;
@@ -18,6 +20,8 @@ public class UserController {
     @Autowired private JpaEntityManagerService jpaService;
 
     @Autowired private UserRepositoryService repoService;
+
+    @Autowired private EmployeeRepositoryService empRepoService;
 
     /*@PostMapping("/hibernate")
     public User saveHibernate(@RequestBody User user) {
@@ -37,5 +41,15 @@ public class UserController {
     @GetMapping("/repo")
     public List<User> getAll() {
         return repoService.findAll();
+    }
+
+    @PostMapping("/emp")
+    public Employee saveRepo(@RequestBody Employee emp) {
+        return empRepoService.save(emp);
+    }
+
+    @GetMapping("/emp")
+    public List<Employee> getEmp() {
+        return empRepoService.findAll();
     }
 }
