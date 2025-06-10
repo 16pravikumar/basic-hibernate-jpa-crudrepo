@@ -1,6 +1,7 @@
 package com.hibernatejpacrudrepo.demo.service;
 
 import com.hibernatejpacrudrepo.demo.entity.User;
+import com.hibernatejpacrudrepo.demo.repository.HibernateUserRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
@@ -13,7 +14,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class HibernateUserService {
 
-    @PersistenceContext
+    /*@PersistenceContext
     private EntityManager entityManager;
 
     @Transactional
@@ -21,5 +22,15 @@ public class HibernateUserService {
         Session session = entityManager.unwrap(Session.class);
         session.save(user);
         return user;
+    }*/
+    @Autowired
+    private HibernateUserRepository hibernateUserRepository;
+
+    public User createUser(User user) {
+      return hibernateUserRepository.saveUser(user);
+    }
+
+    public User getUserById(Long id) {
+        return hibernateUserRepository.getUser(id);
     }
 }

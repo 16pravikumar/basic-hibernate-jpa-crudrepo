@@ -14,8 +14,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/users")
 public class UserController {
-    /*@Autowired
-    private HibernateUserService hibernateService;*/
+    @Autowired
+    private HibernateUserService hibernateService;
 
     @Autowired private JpaEntityManagerService jpaService;
 
@@ -23,10 +23,15 @@ public class UserController {
 
     @Autowired private EmployeeRepositoryService empRepoService;
 
-    /*@PostMapping("/hibernate")
+    @GetMapping("/hibernate")
     public User saveHibernate(@RequestBody User user) {
-        return hibernateService.save(user);
-    }*/
+        return hibernateService.createUser(user);
+    }
+
+    @GetMapping("/hibernate/{id}")
+    public User getUser(@PathVariable Long id) {
+        return hibernateService.getUserById(id);
+    }
 
     @PostMapping("/jpa")
     public User saveJpa(@RequestBody User user) {
